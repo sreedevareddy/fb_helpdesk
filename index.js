@@ -1,17 +1,8 @@
 const express = require("express");
 const connectDB = require("./config/db");
 const cors = require("cors");
-const facebookRoutes = require("./routes/Facebook");
 
 const app = express();
-
-// app.use(
-//   cors({
-//     origin: "https://fb-helpdesk-server.vercel.app/",
-//     credentials: true,
-//     optionSuccessStatus: 200,
-//   })
-// );
 
 // app.use(
 //   cors({
@@ -23,7 +14,16 @@ const app = express();
 // );
 
 app.use(cors());
-
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization"
+  );
+  next();
+});
 
 // Connect Database
 connectDB();
@@ -33,7 +33,7 @@ app.use(express.json({ extended: false }));
 
 // Define Routes
 app.use("/api/auth", require("./routes/Auth"));
-app.use("/api/facebook", facebookRoutes);
+// app.use("/api/facebook", facebookRoutes);
 
 const PORT = process.env.PORT || 5000;
 
