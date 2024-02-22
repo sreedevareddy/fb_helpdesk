@@ -4,14 +4,21 @@ const cors = require("cors");
 const facebookRoutes = require("./routes/Facebook");
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+  origin: "*",
+  credentials: true,
+  optionSuccessStatus: 200,
+};
+
+app.use(cors(), corsOptions);
 app.use(
   cors({
     origin: "https://fb-helpdesk-server.vercel.app/",
+    credentials: true,
+    optionSuccessStatus: 200,
   })
-  
 );
-
 // Connect Database
 connectDB();
 
