@@ -5,6 +5,10 @@ const bcrypt = require('bcryptjs');
 // const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
+app.get('/', (req, res) => {
+  res.send('Hello, World!');
+});
+
 // Route for user registration
 router.post('/register', async (req, res) => {
   const { userName, email, password } = req.body;
