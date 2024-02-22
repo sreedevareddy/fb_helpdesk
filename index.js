@@ -5,20 +5,24 @@ const facebookRoutes = require("./routes/Facebook");
 
 const app = express();
 
-const corsOptions = {
-  origin: "*",
-  credentials: true,
-  optionSuccessStatus: 200,
-};
+// app.use(
+//   cors({
+//     origin: "https://fb-helpdesk-server.vercel.app/",
+//     credentials: true,
+//     optionSuccessStatus: 200,
+//   })
+// );
 
-app.use(cors(), corsOptions);
 app.use(
   cors({
     origin: "https://fb-helpdesk-server.vercel.app/",
+    preflightContinue: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
-    optionSuccessStatus: 200,
   })
 );
+
+
 // Connect Database
 connectDB();
 
