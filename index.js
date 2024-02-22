@@ -12,13 +12,13 @@ const app = express();
 //     credentials: true,
 //   })
 // );
- 
+
 const corsOpts = {
-    origin: '*',
-    credentials: true,
-    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
-    allowedHeaders: ['Content-Type'],
-    exposedHeaders: ['Content-Type']
+  origin: "*",
+  credentials: true,
+  methods: ["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE"],
+  allowedHeaders: ["Content-Type"],
+  exposedHeaders: ["Content-Type"],
 };
 app.use(cors(corsOpts));
 
@@ -35,6 +35,10 @@ app.use(function (req, res, next) {
 
 // Connect Database
 connectDB();
+
+app.get("/", (req, res) => {
+  res.send("Hello, World!");
+});
 
 // Init Middleware
 app.use(express.json({ extended: false }));
