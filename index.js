@@ -36,8 +36,8 @@ app.use(function (req, res, next) {
 // Connect Database
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("Hello, World!");
+app.get("/home", (req, res) => {
+  res.status(200).json("Welcome, your app is working well");
 });
 
 // Init Middleware
