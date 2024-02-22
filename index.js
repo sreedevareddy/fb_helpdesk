@@ -4,22 +4,14 @@ const cors = require("cors");
 
 const app = express();
 
-// app.use(
-//   cors({
-//     origin: "https://fb-helpdesk-frontend.vercel.app/",
-//     preflightContinue: true,
-//     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-//     credentials: true,
-//   })
-// );
-
-const corsConfig = {
-    origin: '',
+app.use(
+  cors({
+    origin: "https://fb-helpdesk-frontend.vercel.app/",
+    preflightContinue: true,
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE']
-}
-app.use(cors(corsConfig))
-app.options("", cors(corsConfig))
+  })
+);
 
 app.use(function (req, res, next) {
   //Enabling CORS
