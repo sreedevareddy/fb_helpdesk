@@ -13,14 +13,13 @@ const app = express();
 //   })
 // );
 
-const corsOpts = {
-  origin: "*",
-  credentials: true,
-  methods: ["GET", "POST", "HEAD", "PUT", "PATCH", "DELETE"],
-  allowedHeaders: ["Content-Type"],
-  exposedHeaders: ["Content-Type"],
-};
-app.use(cors(corsOpts));
+const corsConfig = {
+    origin: '',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE']
+}
+app.use(cors(corsConfig))
+app.options("", cors(corsConfig))
 
 app.use(function (req, res, next) {
   //Enabling CORS
